@@ -2,12 +2,9 @@ class Solution {
 public:
     int missingMultiple(vector<int>& nums, int k) {
         int n = nums.size();
-        unordered_map<int , int> mp;
-        for(int val : nums){
-            mp[val]++;
-        }
-        for(int i=1; i<=101; i++){
-            if(mp.find(k * i) == mp.end()){
+        for(int i=1; i<=n+1; i++){
+            auto val = find(nums.begin() , nums.end() , k * i);
+            if(val == nums.end()){
                 return k*i;
             }
         }
