@@ -4,13 +4,14 @@ public:
         int n = nums.size();
         int sum = 0;
         for(int i=0; i<n; i++){
+            vector<int> freq(101 , 0);
+            int unique = 0;
             for(int j=i; j<n; j++){
-                unordered_set<int> unique;
-                for(int k=i; k<=j; k++){
-                    unique.insert(nums[k]);
+                if(freq[nums[j]] == 0){
+                    unique++;
                 }
-                sum += (unique.size() * unique.size());
-                unique.clear();
+                freq[nums[j]]++;
+                sum += (unique * unique);
             }
         }
         return sum;
